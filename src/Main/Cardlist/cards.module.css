@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    max-width: 750px;
+    width: 750px;
+    justify-content: space-evenly;
+}
+
+.container div {
+    border: 1px solid black;
+    margin: 5px;
+    padding: 5px;
+}
+
+.container button {
+    background-color: black;
+    color: white;
+    font-family: RubikVinyl;
+    border-radius: 20px;
+    font-size: 15px;
+}
+
+.container button:hover {
+    transition: all 500ms linear;
+    background-color: white;
+    color: black;
+}

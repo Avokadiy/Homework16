@@ -1,26 +1,30 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 interface Item {
+  completed: boolean,
   id: number,
-  text: string,
-  done: boolean
+  text: string
 }
 
 interface TodoState {
-  todos: Item[]
+  todos: Item[],
+  filterBy: TFilters
 }
+
+type TFilters = 'ALL' | 'COMPLETED' | 'NOT_COMPLETED';
 
 const Todo = createSlice({
     name: 'todos',
     initialState: {
       todos: [],
+      filterBy: 'ALL',
     } satisfies TodoState as TodoState,
     reducers: (create) => ({
         addTodo: create.preparedReducer(
             (text: string) => {
             const id = Date.now();
-            const done = false;
-            return { payload: { id, text, done } }
+            const completed = false;
+            return { payload: { id, text, completed } }
           },
 
           (state, action) => {
@@ -33,24 +37,22 @@ const Todo = createSlice({
           },
         ),
 
-        doneTodo: create.reducer<number>((state, action) => {
-          let change = state.todos.find(todo => todo.id == action.payload);
-          if (change) {
-            if (change.done == false) {
-              change.done = true;
-            } else {
-              change.done = false;
-            }
+        toggleTodo(state, action) {
+          const toggleTodoItem = state.todos.find(
+            (todo) => todo.id === action.payload.id
+          );
+          if (toggleTodoItem) {
+            toggleTodoItem.completed = !toggleTodoItem.completed;
           }
-        }),
+        },
 
-        filterTodo: create.reducer<boolean>((state, action) => {
-          state.todos.map(todo => todo.done = action.payload);
-        })
+        filterBy(state, action) {
+          state.filterBy = action.payload
+        },
     })
 })
 
-export const {addTodo, deleteTodo, doneTodo, filterTodo} = Todo.actions;
+export const { addTodo, deleteTodo, filterBy, toggleTodo } = Todo.actions;
 
 const store = configureStore({
     reducer: {
