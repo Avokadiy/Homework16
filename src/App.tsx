@@ -1,10 +1,9 @@
 import './App.css'
+import Main from './Main/main'
 
-function App() {
+export default function App() {
 
   return (
-    <div></div>
+    <Main/>
   )
 }
-
-export default App

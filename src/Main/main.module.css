@@ -1,7 +1,55 @@
+@font-face {
+    font-family: RubikVinyl;
+    src: url(./../fonts/RubikVinyl-Regular.ttf);
+}
+
 .container {
     display: flex;
     justify-content: center;
-    border: 1px solid black;
+    border: 1px solid rgb(0, 153, 255);
     border-radius: 20px;
     padding: 20px;
+    margin: 50px auto;
+    width: 500px;
+    max-width: 500px;
+}
+
+.textarea {
+    display: grid;
+    border: 5px solid rgb(4, 0, 255);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 5px 5px rgb(3, 0, 172);
+}
+
+.textarea h1 {
+    margin: auto;
+    font-size: 60px;
+    font-family: RubikVinyl;
+}
+
+.textarea p {
+    margin: auto;
+    font-size: 50px;
+}
+
+.textarea textarea {
+    height: 70px;
+    margin: 20px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.textarea button {
+    background-color: black;
+    color: white;
+    font-family: RubikVinyl;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+.textarea button:hover {
+    transition: all 500ms linear;
+    background-color: white;
+    color: black;
 }
